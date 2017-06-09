@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
-namespace QDocsWeb.Models
+namespace QDocsWeb.Controllers.Models
 {
     public class Question
     {
@@ -8,7 +9,7 @@ namespace QDocsWeb.Models
         public int Votes { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public UserProfile user { get; set; }
+        public string UserId { get; set; }
         public IEnumerable<Response> Responses { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using QDocsWeb.Models;
+using QDocsWeb.Controllers.Models;
 using QDocsWeb.Controllers.Services;
 
 namespace QDocsWeb.Controllers
@@ -18,37 +18,37 @@ namespace QDocsWeb.Controllers
         [HttpGet]
         public IEnumerable<Question> Get()
         {
-            return new List<Question>();
+            return _questionService.GetAll();
         }
         
         [HttpGet("{id}")]
-        public Question Get(int id)
+        public Question Get(string id)
         {
-            return new Question();
+            return _questionService.Get(id);
         }
         
         [HttpPost]
         public Question Post([FromBody]Question value)
         {
-            return value;
+            return _questionService.Create(value);
         }
         
         [HttpPost("{id}/votes")]
-        public Question PostVote(int id, [FromBody]int value)
+        public Question PostVote(string id, [FromBody]int value)
         {
-            return new Question();
+            return _questionService.SetVote(id, "0", value);
         }
 
         [HttpPost("{id}/responses")]
-        public Response PostResponse(int id, [FromBody]Response value)
+        public Question PostResponse(string id, [FromBody]Response value)
         {
-            return new Response();
+            return _questionService.AddResponse(id, value);
         }
 
-        [HttpPost("{id}/responses/votes")]
-        public Response PostResponseVote(int id, [FromBody]int value)
+        [HttpPost("{id}/responses/{responseId}/votes")]
+        public Response PostResponseVote(string id, string responseId, [FromBody]int value)
         {
-            return new Response();
+            return _questionService.UpdateResponseVote(id, responseId, "0", value);
         }
     }
 }

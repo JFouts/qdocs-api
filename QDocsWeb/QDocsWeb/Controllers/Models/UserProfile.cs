@@ -1,4 +1,4 @@
-﻿namespace QDocsWeb.Models
+﻿namespace QDocsWeb.Controllers.Models
 {
     public class UserProfile
     {
